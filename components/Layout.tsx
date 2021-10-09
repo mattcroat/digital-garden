@@ -65,6 +65,12 @@ export function Layout({ children }: LayoutProps) {
             gap: 1rem;
             list-style-position: inside;
           }
+
+          img {
+            width: 100%;
+            height: 100%;
+            display: block;
+          }
         `}
       </style>
     </>

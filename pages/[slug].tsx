@@ -4,6 +4,16 @@ import { getMDXComponent } from 'mdx-bundler/client'
 import { readdirSync } from 'fs'
 import { cwd } from 'process'
 
+// mdx plugins
+import remarkCodeTitle from 'remark-code-titles'
+import remarkGfm from 'remark-gfm'
+import remarkHeadings from 'remark-autolink-headings'
+import remarkPrism from 'remark-prism'
+import remarkSlug from 'remark-slug'
+import remarkSmartypants from '@silvenon/remark-smartypants'
+import remarkTableofContents from 'remark-toc'
+import remarkUnwrapImages from 'remark-unwrap-images'
+
 import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
 
 interface PostProps {
@@ -30,8 +40,25 @@ export async function getStaticProps(context: Context) {
   // markdown plugins
   const options: BundleMDXOptions = {
     xdmOptions(options) {
-      options.remarkPlugins = [...(options.remarkPlugins ?? [])]
-      options.rehypePlugins = [...(options.rehypePlugins ?? [])]
+      options.remarkPlugins = [
+        ...(options.remarkPlugins ?? []),
+        // github flavored markdown
+        remarkGfm,
+        // add id to headings
+        remarkHeadings,
+        // syntax highlight
+        remarkPrism,
+        // add links to headings
+        remarkSlug,
+        // add code title for code block (order is important)
+        remarkCodeTitle,
+        // smart typographic punctuation like real quotes
+        remarkSmartypants,
+        // generates table of contents from headings
+        remarkTableofContents,
+        // remove paragraph around images
+        remarkUnwrapImages,
+      ]
       return options
     },
   }
