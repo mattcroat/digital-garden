@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { useMemo } from 'react'
 import Image from 'next/image'
 import { bundleMDXFile } from 'mdx-bundler'
@@ -20,6 +22,7 @@ import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
 // experimental
 import visit from 'unist-util-visit'
 import sizeOf from 'image-size'
+import lqip from 'lqip-modern'
 
 interface PostProps {
   code: string
@@ -34,7 +37,7 @@ interface Frontmatter {
 type Context = { params: { slug: string } }
 
 const mdxComponents = {
-  img: ({ src, alt, width, height }) => (
+  img: ({ src, alt, width, height, blurDataURL }) => (
     <Image
       src={src}
       alt={alt}
@@ -42,7 +45,7 @@ const mdxComponents = {
       height={height}
       loading="lazy"
       placeholder="blur"
-      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
+      blurDataURL={blurDataURL}
     />
   ),
 }
@@ -50,8 +53,10 @@ const mdxComponents = {
 function setImageSize(options) {
   console.log(options)
 
-  function transform(tree) {
-    visit(tree, 'element', (node, index, parent) => {
+  async function transform(tree) {
+    const promises: any[] = []
+
+    function visitor(node, index, parent) {
       if (node.tagName === 'img') {
         const src = node.properties.src
         const currentDirectory = cwd()
@@ -59,8 +64,18 @@ function setImageSize(options) {
         const { width, height } = sizeOf(image)
         node.properties.width = width
         node.properties.height = height
+
+        const promise = lqip(image).then(({ metadata }) => {
+          const base64Image = metadata.dataURIBase64
+          node.properties.blurDataURL = base64Image
+        })
+
+        promises.push(promise)
       }
-    })
+    }
+
+    visit(tree, 'element', visitor)
+    await Promise.all(promises)
   }
 
   return transform
