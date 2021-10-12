@@ -1,28 +1,22 @@
-// @ts-nocheck
-
 import { useMemo } from 'react'
-import Image from 'next/image'
 import { bundleMDXFile } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
 import { readdirSync } from 'fs'
 import { cwd } from 'process'
+import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
 
 // mdx plugins
-import remarkCodeTitle from 'remark-code-titles'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from '@mapbox/rehype-prism'
 import remarkGfm from 'remark-gfm'
 import remarkHeadings from 'remark-autolink-headings'
-import remarkPrism from 'remark-prism'
 import remarkSlug from 'remark-slug'
 import remarkSmartypants from '@silvenon/remark-smartypants'
 import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
-
-// experimental
-import visit from 'unist-util-visit'
-import sizeOf from 'image-size'
-import lqip from 'lqip-modern'
+import mdxComponents from '../components/mdx'
+import rehypeImageSize from '../lib/rehypeImageSize'
 
 interface PostProps {
   code: string
@@ -34,51 +28,10 @@ interface Frontmatter {
   description: string
 }
 
-type Context = { params: { slug: string } }
-
-const mdxComponents = {
-  img: ({ src, alt, width, height, blurDataURL }) => (
-    <Image
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      loading="lazy"
-      placeholder="blur"
-      blurDataURL={blurDataURL}
-    />
-  ),
-}
-
-function setImageSize(options) {
-  console.log(options)
-
-  async function transform(tree) {
-    const promises: any[] = []
-
-    function visitor(node, index, parent) {
-      if (node.tagName === 'img') {
-        const src = node.properties.src
-        const currentDirectory = cwd()
-        const image = `${currentDirectory}/public${src}`
-        const { width, height } = sizeOf(image)
-        node.properties.width = width
-        node.properties.height = height
-
-        const promise = lqip(image).then(({ metadata }) => {
-          const base64Image = metadata.dataURIBase64
-          node.properties.blurDataURL = base64Image
-        })
-
-        promises.push(promise)
-      }
-    }
-
-    visit(tree, 'element', visitor)
-    await Promise.all(promises)
+type Context = {
+  params: {
+    slug: string
   }
-
-  return transform
 }
 
 export default function Post({ code, frontmatter }: PostProps) {
@@ -101,12 +54,8 @@ export async function getStaticProps(context: Context) {
         remarkGfm,
         // add id to headings
         remarkHeadings,
-        // syntax highlight
-        remarkPrism,
         // add links to headings
         remarkSlug,
-        // add code title for code block (order is important)
-        remarkCodeTitle,
         // smart typographic punctuation like real quotes
         remarkSmartypants,
         // generates table of contents from headings
@@ -116,7 +65,12 @@ export async function getStaticProps(context: Context) {
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        [setImageSize, { dir: 'public' }],
+        // title for code blocks (has to come before `rehypePrism`)
+        rehypeCodeTitles,
+        // syntax highlight
+        rehypePrism,
+        // image dimensions and placeholder
+        [rehypeImageSize, { dir: 'public' }],
       ]
       return options
     },

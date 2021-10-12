@@ -1,5 +1,7 @@
 import Head from 'next/head'
 
+import styles from '../styles'
+
 interface LayoutProps {
   children: React.ReactNode
 }
@@ -18,6 +20,10 @@ export function Layout({ children }: LayoutProps) {
       <style jsx>
         {`
           main {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2rem;
             max-width: 60ch;
             margin: 0 auto;
           }
@@ -25,53 +31,7 @@ export function Layout({ children }: LayoutProps) {
       </style>
 
       <style jsx global>
-        {`
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-
-          html,
-          body {
-            height: 100%;
-          }
-
-          body {
-            font-family: 'Inter', sans-serif;
-            color: hsl(0 0% 100%);
-            background-color: hsl(220 20% 14%);
-          }
-
-          h1 {
-            padding: 2rem 0;
-            font-size: 2rem;
-            font-weight: 300;
-          }
-
-          p {
-            font-size: 1.125rem;
-            line-height: 1.4;
-          }
-
-          a {
-            color: tomato;
-          }
-
-          ol,
-          ul {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            list-style-position: inside;
-          }
-
-          img {
-            width: 100%;
-            height: 100%;
-            display: block;
-          }
-        `}
+        {styles}
       </style>
     </>
   )
