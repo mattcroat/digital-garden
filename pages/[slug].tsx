@@ -15,30 +15,34 @@ import remarkSmartypants from '@silvenon/remark-smartypants'
 import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
+import Layout from '../components/Layout'
 import mdxComponents from '../components/mdx'
 import rehypeImageSize from '../lib/rehypeImageSize'
 
 interface PostProps {
   code: string
-  frontmatter: Frontmatter
+  metadata: Metadata
 }
 
-interface Frontmatter {
+interface Metadata {
   title: string
   description: string
+  published: string
+  category: string
+  image: string
 }
 
-type Context = {
-  params: {
-    slug: string
-  }
-}
+type Context = { params: { slug: string } }
 
-export default function Post({ code, frontmatter }: PostProps) {
+export default function Post({ code, metadata }: PostProps) {
   // avoid recreating the component every render
   const Component = useMemo(() => getMDXComponent(code), [code])
-  // @ts-expect-error the types are wrong here
-  return <Component components={mdxComponents} />
+
+  return (
+    <Layout metadata={metadata}>
+      <Component components={mdxComponents as any} />
+    </Layout>
+  )
 }
 
 export async function getStaticProps(context: Context) {
@@ -80,12 +84,12 @@ export async function getStaticProps(context: Context) {
   const currentDirectory = cwd()
   const path = `${currentDirectory}/posts/${slug}/${slug}.mdx`
   const markdown = await bundleMDXFile(path, options)
-  const { code, frontmatter } = markdown
+  const { code, frontmatter: metadata } = markdown
 
   return {
     props: {
       code,
-      frontmatter,
+      metadata,
     },
   }
 }

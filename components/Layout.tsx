@@ -1,19 +1,15 @@
-import Head from 'next/head'
-
+import Seo from './Seo'
 import styles from '../styles'
 
 interface LayoutProps {
   children: React.ReactNode
+  metadata?: any
 }
 
-export function Layout({ children }: LayoutProps) {
+export default function Layout({ children, metadata }: LayoutProps) {
   return (
     <>
-      <Head>
-        <title>Digital Garden</title>
-        <meta name="description" content="Digital garden" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo {...metadata} />
 
       <main>{children}</main>
 
