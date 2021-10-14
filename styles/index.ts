@@ -9,15 +9,40 @@ const styles = css.global`
     box-sizing: border-box;
   }
 
+  :root {
+    --font-serif: 'Inter', sans-serif;
+    --transition-color: color 0.3s, background-color 0.3s;
+    --shadow: 2px 2px 4px hsl(0, 0%, 0%, 20%);
+  }
+
   html,
   body {
     height: 100%;
   }
 
   body {
-    font-family: 'Inter', sans-serif;
-    color: hsl(0 0% 100%);
-    background-color: hsl(220 20% 14%);
+    font-family: var(--font-serif);
+    color: var(--color-text);
+    background-color: var(--color-background);
+    transition: var(--transition-color);
+  }
+
+  body[data-theme='dark'] {
+    --color-text: hsl(0, 0%, 98%);
+    --color-background: hsl(220, 20%, 14%);
+    --color-toggle: hsl(220, 20%, 10%);
+    --color-toggle-sun: hsl(0, 0%, 98%);
+    --color-toggle-moon: hsl(0, 0%, 98%);
+    --color-toggle-mask: var(--color-toggle);
+  }
+
+  body[data-theme='light'] {
+    --color-text: hsl(0, 0%, 20%);
+    --color-background: hsl(0 0% 94%);
+    --color-toggle: hsl(0, 0%, 98%);
+    --color-toggle-sun: hsl(220, 20%, 10%);
+    --color-toggle-moon: hsl(220, 20%, 10%);
+    --color-toggle-mask: var(--color-toggle);
   }
 
   .post h1 {
@@ -45,10 +70,6 @@ const styles = css.global`
     display: block;
   }
 
-  a {
-    color: tomato;
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -59,6 +80,10 @@ const styles = css.global`
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+  }
+
+  a {
+    color: tomato;
   }
 
   code[class*='language-'],

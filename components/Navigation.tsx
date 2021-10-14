@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import DarkModeToggle from './DarkModeToggle'
+import ThemeToggle from './ThemeToggle'
 
 const links = [
   { location: 'Home', url: '/' },
@@ -33,7 +33,7 @@ export function Navigation() {
   return (
     <nav>
       <Links />
-      <DarkModeToggle />
+      <ThemeToggle />
 
       <style jsx>
         {`
