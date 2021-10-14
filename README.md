@@ -9,22 +9,26 @@ This is a digital garden using:
 Features:
 
 - [ ] Great design
-- [ ] Dark mode
+- [x] Dark mode
 - [ ] Post categories
 - [x] Meta tags (SEO)
 - [ ] Analytics (Netlify)
 - [x] MDX
 - [x] Markdown plugins
   - [x] GitHub flavored Markdown
+    - Task lists
+    - Tables
+    - Automatic Linking of URLs
+    - Strikethrough
   - [x] Smart typographic punctuation
   - [x] Remove paragraph from images
   - [x] Syntax highlight using Prism
-    - [ ] Line highlight
-    - [ ] Line numbers
-    - [ ] Inline color
-    - [ ] Diff highlight
-    - [ ] Treeview
-    - [ ] Copy to clipboard
+    - Line highlight
+    - Line numbers
+    - Inline color
+    - Diff highlight
+    - Treeview
+    - Copy to clipboard
   - [x] Generate table of contents
     - [x] Headings have links
     - [x] Headings have IDs
