@@ -1,7 +1,9 @@
 import css from 'styled-jsx/css'
 
 const styles = css.global`
-  * {
+  *,
+  *:after,
+  *:before {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,33 +20,45 @@ const styles = css.global`
     background-color: hsl(220 20% 14%);
   }
 
-  h1 {
+  .post h1 {
     padding: 2rem 0;
     font-size: 2rem;
     font-weight: 300;
   }
 
-  p {
+  .post p {
     font-size: 1.125rem;
     line-height: 1.4;
   }
 
-  a {
-    color: tomato;
-  }
-
-  ol,
-  ul {
+  .post ol,
+  .post ul {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     list-style-position: inside;
   }
 
-  img {
+  .post img {
     width: 100%;
     height: 100%;
     display: block;
+  }
+
+  a {
+    color: tomato;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   code[class*='language-'],
