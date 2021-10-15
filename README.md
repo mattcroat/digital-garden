@@ -10,7 +10,8 @@ Features:
 
 - [ ] Great design
 - [x] Dark mode
-- [ ] Post categories
+- [x] Post categories
+- [x] List sorted posts
 - [x] Meta tags (SEO)
 - [ ] Analytics (Netlify)
 - [x] MDX
@@ -23,12 +24,12 @@ Features:
   - [x] Smart typographic punctuation
   - [x] Remove paragraph from images
   - [x] Syntax highlight using Prism
-    - Line highlight
-    - Line numbers
-    - Inline color
-    - Diff highlight
-    - Treeview
-    - Copy to clipboard
+    - [ ] Line highlight
+    - [ ] Line numbers
+    - [ ] Inline color
+    - [ ] Diff highlight
+    - [ ] Treeview
+    - [ ] Copy to clipboard
   - [x] Generate table of contents
     - [x] Headings have links
     - [x] Headings have IDs
