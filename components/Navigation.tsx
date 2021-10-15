@@ -4,7 +4,7 @@ import ThemeToggle from './ThemeToggle'
 const links = [
   { location: 'Home', url: '/' },
   { location: 'Posts', url: '/posts' },
-  { location: 'About', url: '/About' },
+  { location: 'About', url: '/about' },
 ]
 
 function Links() {
