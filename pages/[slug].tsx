@@ -1,9 +1,7 @@
 import { useMemo } from 'react'
 import { bundleMDXFile } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
-import { readdirSync } from 'fs'
-import { cwd } from 'process'
-import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
+import fs from 'fs'
 
 // mdx plugins
 import rehypeCodeTitles from 'rehype-code-titles'
@@ -19,19 +17,15 @@ import Layout from '../components/Layout'
 import mdxComponents from '../components/mdx'
 import rehypeImageSize from '../lib/rehypeImageSize'
 
+import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
+import type { Post as Metadata } from '../types/post'
+
 interface PostProps {
   code: string
   metadata: Metadata
 }
 
-interface Metadata {
-  title: string
-  description: string
-  published: string
-  category: string
-  image: string
-}
-
+// todo: ?
 type Context = { params: { slug: string } }
 
 export default function Post({ code, metadata }: PostProps) {
@@ -81,9 +75,9 @@ export async function getStaticProps(context: Context) {
   }
 
   // post path
-  const currentDirectory = cwd()
-  const path = `${currentDirectory}/posts/${slug}/${slug}.mdx`
-  const markdown = await bundleMDXFile(path, options)
+  const currentDirectory = process.cwd()
+  const postPath = `${currentDirectory}/posts/${slug}/${slug}.mdx`
+  const markdown = await bundleMDXFile(postPath, options)
   const { code, frontmatter: metadata } = markdown
 
   return {
@@ -95,28 +89,14 @@ export async function getStaticProps(context: Context) {
 }
 
 export async function getStaticPaths() {
-  // get the post paths
-  const currentDirectory = cwd()
-  const postFoldersPath = `${currentDirectory}/posts`
-  const postFolders = readdirSync(postFoldersPath)
-  const postPaths = postFolders.map(
-    (folder) => `${currentDirectory}/posts/${folder}`
-  )
-
-  // get the posts
-  const posts = []
-
-  for (const path of postPaths) {
-    const files = readdirSync(path)
-    const filteredPosts = files
-      .filter((file) => file.endsWith('.mdx'))
-      .map((file) => file.replace('.mdx', ''))
-    posts.push(...filteredPosts)
-  }
+  // post paths
+  const currentDirectory = process.cwd()
+  const posts = fs.readdirSync(`${currentDirectory}/posts`)
+  const postPaths = posts.map((post) => post)
 
   // paths
-  const paths = posts.map((post) => ({
-    params: { slug: post },
+  const paths = postPaths.map((path) => ({
+    params: { slug: path },
   }))
 
   return {

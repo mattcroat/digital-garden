@@ -1,18 +1,10 @@
 import Link from 'next/link'
 import { bundleMDXFile } from 'mdx-bundler'
-import { cwd } from 'process'
-import { readdirSync } from 'fs'
+import fs from 'fs'
 
 import Layout from '../components/Layout'
 
-interface Post {
-  category: string
-  description: string
-  image: string
-  published: number
-  slug: string
-  title: string
-}
+import type { Post } from '../types/post'
 
 interface PostsProps {
   posts: Post[]
@@ -44,33 +36,26 @@ export default function Home({ posts }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  // get the post paths
-  const currentDirectory = cwd()
-  const postFoldersPath = `${currentDirectory}/posts`
-  const postFolders = readdirSync(postFoldersPath)
-  const postPaths = postFolders.map(
-    (folder) => `${currentDirectory}/posts/${folder}/${folder}.mdx`
-  )
+  // post paths
+  const currentDirectory = process.cwd()
+  const posts = fs.readdirSync(`${currentDirectory}/posts`)
 
-  // get the posts
-  const posts = []
+  // metadata from frontmatter
+  const postsMetadata = []
 
-  for (let path of postPaths) {
-    const markdown = await bundleMDXFile(path)
+  for (let post of posts) {
+    const postPath = `${currentDirectory}/posts/${post}/${post}.mdx`
+    const markdown = await bundleMDXFile(postPath)
     const { frontmatter } = markdown
 
-    const published = frontmatter.published
-    const timestamp = new Date(published).valueOf()
-    const slug = path.match(/([\w\d-]+).mdx/)![1]
-
+    const timestamp = new Date(frontmatter.published).valueOf()
     frontmatter.published = timestamp
-    frontmatter.slug = slug
 
-    posts.push(frontmatter)
+    postsMetadata.push(frontmatter)
   }
 
   // sort posts by oldest to newest
-  const sortedPosts = posts.sort(
+  const sortedPosts = postsMetadata.sort(
     (firstEl, secondEl) => secondEl.published - firstEl.published
   )
 
