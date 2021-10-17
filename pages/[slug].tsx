@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { bundleMDXFile } from 'mdx-bundler'
 import { getMDXComponent } from 'mdx-bundler/client'
+import { BundleMDXOptions } from 'mdx-bundler/dist/types'
 import fs from 'fs'
 
 // mdx plugins
@@ -13,20 +14,21 @@ import remarkSmartypants from '@silvenon/remark-smartypants'
 import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
+import { Post as Metadata } from '../types/post'
 import Layout from '../components/Layout'
 import mdxComponents from '../components/mdx'
 import rehypeImageSize from '../lib/rehypeImageSize'
-
-import type { BundleMDXOptions } from 'mdx-bundler/dist/types'
-import type { Post as Metadata } from '../types/post'
 
 interface PostProps {
   code: string
   metadata: Metadata
 }
 
-// todo: ?
-type Context = { params: { slug: string } }
+interface Params {
+  params: {
+    slug: string
+  }
+}
 
 export default function Post({ code, metadata }: PostProps) {
   // avoid recreating the component every render
@@ -39,9 +41,26 @@ export default function Post({ code, metadata }: PostProps) {
   )
 }
 
-export async function getStaticProps(context: Context) {
+export async function getStaticPaths() {
+  // post paths
+  const currentDirectory = process.cwd()
+  const posts = fs.readdirSync(`${currentDirectory}/posts`)
+  const postPaths = posts.map((post) => post)
+
+  // paths
+  const paths = postPaths.map((path) => ({
+    params: { slug: path },
+  }))
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }: Params) {
   // slug
-  const { slug } = context.params
+  const { slug } = params
 
   // markdown plugins
   const options: BundleMDXOptions = {
@@ -85,22 +104,5 @@ export async function getStaticProps(context: Context) {
       code,
       metadata,
     },
-  }
-}
-
-export async function getStaticPaths() {
-  // post paths
-  const currentDirectory = process.cwd()
-  const posts = fs.readdirSync(`${currentDirectory}/posts`)
-  const postPaths = posts.map((post) => post)
-
-  // paths
-  const paths = postPaths.map((path) => ({
-    params: { slug: path },
-  }))
-
-  return {
-    paths,
-    fallback: false,
   }
 }

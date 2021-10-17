@@ -87,9 +87,9 @@ export default function DarkModeToggle() {
     // if theme is selected use it
     const selectedTheme = localStorage.getItem('theme')
     // otherwise see if the user has a set preference
-    const prefers = matchMedia('(prefers-color-scheme: light)').matches
-      ? 'light'
-      : 'dark'
+    const prefers = matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light'
     selectedTheme ? setTheme(selectedTheme) : setTheme(prefers)
   }, [])
 

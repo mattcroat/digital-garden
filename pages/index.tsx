@@ -1,10 +1,9 @@
-import Link from 'next/link'
 import { bundleMDXFile } from 'mdx-bundler'
+import Link from 'next/link'
 import fs from 'fs'
 
+import { Post } from '../types/post'
 import Layout from '../components/Layout'
-
-import type { Post } from '../types/post'
 
 interface PostsProps {
   posts: Post[]

@@ -65,9 +65,10 @@ const styles = css.global`
   }
 
   .post img {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     display: block;
+    border-radius: 10px;
   }
 
   .sr-only {
