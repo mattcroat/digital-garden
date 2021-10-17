@@ -3,8 +3,11 @@ import ThemeToggle from './ThemeToggle'
 
 const links = [
   { location: 'Home', url: '/' },
-  { location: 'Posts', url: '/posts' },
+  { location: 'Posts', url: '/category/posts' },
   { location: 'About', url: '/about' },
+  { location: 'HTML', url: '/category/html' },
+  { location: 'CSS', url: '/category/css' },
+  { location: 'JavaScript', url: '/category/javascript' },
 ]
 
 function Links() {
