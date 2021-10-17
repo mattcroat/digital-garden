@@ -1,19 +1,19 @@
 import Head from 'next/head'
 
 export default function Seo({ ...metadata }) {
-  const url = 'your-site-url'
+  const development = process.env.NODE_ENV === 'development'
+  const url = development ? 'http://localhost:3000' : 'your-site-url'
+
   const meta = {
     title: 'Digital Garden',
     description: `Description of the site`,
-    image: `${url}/images/og-image.webp`,
+    image: `${url}/images/social-image.png`,
     ...metadata,
   }
 
   return (
     <Head>
       <title>{meta.title}</title>
-
-      <meta content="index, follow" name="robots" />
       <meta content={meta.description} name="description" />
 
       <meta content={meta.title} property="og:title" />
@@ -25,7 +25,7 @@ export default function Seo({ ...metadata }) {
       <meta content={meta.description} name="twitter:description" />
       <meta content={meta.image} name="twitter:image" />
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="https://fav.farm/🌱" />
     </Head>
   )
 }
