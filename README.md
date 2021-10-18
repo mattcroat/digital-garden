@@ -8,10 +8,10 @@ This is a digital garden using:
 
 Features:
 
-- [ ] Great design
 - [x] Dark mode
 - [x] Post categories
 - [x] List sorted posts
+- [x] Next.js image
 - [x] Meta tags (SEO)
 - [ ] Analytics (Netlify)
 - [x] MDX
@@ -24,11 +24,8 @@ Features:
   - [x] Smart typographic punctuation
   - [x] Remove paragraph from images
   - [x] Syntax highlight using Prism
-    - [ ] Line highlight
-    - [ ] Line numbers
-    - [ ] Inline color
-    - [ ] Diff highlight
-    - [ ] Treeview
+    - [x] Line highlight
+    - [x] Line numbers
     - [ ] Copy to clipboard
   - [x] Generate table of contents
     - [x] Headings have links
