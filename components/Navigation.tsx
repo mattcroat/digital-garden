@@ -2,9 +2,7 @@ import Link from 'next/link'
 import ThemeToggle from './ThemeToggle'
 
 const links = [
-  { location: 'Home', url: '/' },
-  { location: 'Posts', url: '/category/posts' },
-  { location: 'About', url: '/about' },
+  { location: '🌱 Digital Garden', url: '/' },
   { location: 'HTML', url: '/category/html' },
   { location: 'CSS', url: '/category/css' },
   { location: 'JavaScript', url: '/category/javascript' },
@@ -23,7 +21,7 @@ function Links() {
         {`
           ol {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-1);
             list-style: none;
           }
         `}
@@ -44,12 +42,12 @@ export function Navigation() {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
+            padding: var(--spacing-2) 0;
           }
 
           ol {
             display: flex;
-            gap: 1rem;
+            gap: var(--spacing-1);
             list-style: none;
           }
         `}

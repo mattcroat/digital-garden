@@ -1,6 +1,7 @@
 import { Navigation } from './Navigation'
 import Seo from './Seo'
-import styles from '../styles'
+import styles from '../styles/style'
+import prism from '../styles/prism'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -17,25 +18,25 @@ export default function Layout({ children, metadata }: LayoutProps) {
       <style jsx>
         {`
           .container {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            max-width: 60ch;
+            max-width: var(--reading-length);
             margin: 0 auto;
-            padding: 2rem 0;
           }
 
           .post {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 2rem;
+            gap: var(--spacing-2);
           }
         `}
       </style>
 
       <style jsx global>
         {styles}
+      </style>
+
+      <style jsx global>
+        {prism}
       </style>
     </div>
   )

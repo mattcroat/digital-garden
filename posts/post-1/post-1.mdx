@@ -11,15 +11,21 @@ import { Counter } from './Counter'
 
 # Post 1
 
-<Counter />
-
 ## Table of Contents
+
+## React Component
+
+<Counter />
 
 ## Paragraph
 
-Paragraph text.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, tempore, minima nisi suscipit hic odit consequatur iusto, dolor eum fuga mollitia facere? Nam quaerat dolorem culpa, est aliquid veritatis amet.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, tempore, minima nisi suscipit hic odit consequatur iusto, dolor eum fuga mollitia facere? Nam quaerat dolorem culpa, est aliquid veritatis amet.
 
 ## Image
+
+![Image](/images/post-1/image.jpg)
 
 ## Blockquote
 
@@ -49,31 +55,41 @@ Paragraph text.
 console.log('Hello, World!')
 ```
 
-## Links
+```js:index.js {2-4} showLineNumbers
+function greeting(greeting) {
+  if (!greeting) {
+    throw new Error('Provide a greeting.')
+  }
 
-a [link](https://example.com), , some _emphasis_,
-something **strong**, and finally a little `code()`.
+  console.log(greeting)
+}
+```
 
 ## Smartypants
 
-real "quotes" smartypants :D
+Real "quotes" and ... ellipses.
 
-## Autolink Literals
+## GitHub Flavored Markdown
 
-www.example.com, https://example.com, and contact@example.com.
+### Links
 
-## Strikethrough
+A [link](https://example.com), some _emphasis_,
+something **strong**, and finally a little `code()`.
+
+### Automatic Linking
+
+www.example.com, https://example.com and contact@example.com.
+
+### Strikethrough
 
 ~one~ or ~~two~~ tildes.
 
-## Table
+### Table
 
 | a   | b   |   c |  d  |
 | --- | :-- | --: | :-: |
 
-## Tasklist
+### Tasklist
 
 - [ ] to do
 - [x] done
-
-![Image](/images/post-1/image.jpg)

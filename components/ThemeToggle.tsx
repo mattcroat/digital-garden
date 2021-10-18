@@ -34,7 +34,6 @@ function Toggle({ checked, toggle }: ToggleProps) {
             position: relative;
             background-color: var(--color-toggle);
             border-radius: 50px;
-            box-shadow: var(--shadow);
             overflow: hidden;
             cursor: pointer;
           }
