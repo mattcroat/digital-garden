@@ -6,7 +6,7 @@ import fs from 'fs'
 
 // mdx plugins
 import rehypeCodeTitles from 'rehype-code-titles'
-import rehypePrism from '@mapbox/rehype-prism'
+import rehypePrism from 'rehype-prism-plus'
 import remarkGfm from 'remark-gfm'
 import remarkHeadings from 'remark-autolink-headings'
 import remarkSlug from 'remark-slug'
@@ -76,7 +76,8 @@ export async function getStaticProps({ params }: Params) {
         // smart typographic punctuation like real quotes
         remarkSmartypants,
         // generates table of contents from headings
-        remarkTableofContents,
+        // `tight` removes <p> from <li> when nested
+        [remarkTableofContents, { tight: true }],
         // remove paragraph around images
         remarkUnwrapImages,
       ]
