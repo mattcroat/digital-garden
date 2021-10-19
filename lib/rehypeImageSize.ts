@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import visit from 'unist-util-visit'
 import sizeOf from 'image-size'
 import lqip from 'lqip-modern'
