@@ -39,6 +39,8 @@ export function Navigation() {
       <style jsx>
         {`
           nav {
+            max-width: var(--reading-length);
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;

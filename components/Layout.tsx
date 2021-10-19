@@ -10,26 +10,10 @@ interface LayoutProps {
 
 export default function Layout({ children, metadata }: LayoutProps) {
   return (
-    <div className="container">
+    <div>
       <Seo {...metadata} />
       <Navigation />
       <main className="post">{children}</main>
-
-      <style jsx>
-        {`
-          .container {
-            max-width: var(--reading-length);
-            margin: 0 auto;
-          }
-
-          .post {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: var(--spacing-2);
-          }
-        `}
-      </style>
 
       <style jsx global>
         {styles}

@@ -1,65 +1,51 @@
 import css from 'styled-jsx/css'
 
 const prism = css.global`
+  /*
+    Syntax highlight
+  */
+
+  pre {
+    padding: var(--spacing-1);
+    border-radius: var(--radius-base);
+    border-radius: 0 0 4px 4px;
+    background-color: var(--color-code-block);
+    box-shadow: 0px 4px 2px hsl(0, 0%, 0%, 10%);
+  }
+
   code[class*='language-'],
   pre[class*='language-'] {
-    color: #ebdbb2; /* fg1 / fg */
-    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    color: var(--color-token-1);
+    font-family: var(--font-mono);
     direction: ltr;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
     word-break: normal;
     line-height: 1.5;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
     tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
     hyphens: none;
   }
 
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection,
-  code[class*='language-']::-moz-selection,
-  code[class*='language-'] ::-moz-selection {
-    color: #fbf1c7; /* fg0 */
-    background: #7c6f64; /* bg4 */
-  }
-
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection,
-  code[class*='language-']::selection,
-  code[class*='language-'] ::selection {
-    color: #fbf1c7; /* fg0 */
-    background: #7c6f64; /* bg4 */
-  }
-
-  /* Code blocks */
+  /* code blocks */
   pre[class*='language-'] {
-    padding: 1em;
     margin: 0.5em 0;
+    padding: 1em;
     overflow: auto;
   }
 
-  :not(pre) > code[class*='language-'],
-  pre[class*='language-'] {
-    background: #1d2021; /* bg0_h */
-  }
-
-  /* Inline code */
-  :not(pre) > code[class*='language-'] {
-    padding: 0.1em;
+  /* inline code */
+  :not(pre) > code {
+    padding: 0.4em;
     border-radius: 0.3em;
+    color: var(--color-text-inline);
+    background-color: var(--color-code-inline);
   }
 
   .token.comment,
   .token.prolog,
   .token.cdata {
-    color: #a89984; /* fg4 / gray1 */
+    color: var(--color-token-2);
   }
 
   .token.delimiter,
@@ -68,55 +54,55 @@ const prism = css.global`
   .token.selector,
   .token.important,
   .token.atrule {
-    color: #fb4934; /* red2 */
+    color: var(--color-token-3);
   }
 
   .token.operator,
   .token.punctuation,
   .token.attr-name {
-    color: #a89984; /* fg4 / gray1 */
+    color: var(--color-token-2);
   }
 
   .token.tag,
   .token.tag .punctuation,
   .token.doctype,
   .token.builtin {
-    color: #fabd2f; /* yellow2 */
+    color: var(--color-token-4);
   }
 
   .token.entity,
   .token.number,
   .token.symbol {
-    color: #d3869b; /* purple2 */
+    color: var(--color-token-5);
   }
 
   .token.property,
   .token.constant,
   .token.variable {
-    color: #fb4934; /* red2 */
+    color: var(--color-token-3);
   }
 
   .token.string,
   .token.char {
-    color: #b8bb26; /* green2 */
+    color: var(--color-token-6);
   }
 
   .token.attr-value,
   .token.attr-value .punctuation {
-    color: #a89984; /* fg4 / gray1 */
+    color: var(--color-token-2);
   }
 
   .token.url {
-    color: #b8bb26; /* green2 */
+    color: var(--color-token-6);
     text-decoration: underline;
   }
 
   .token.function {
-    color: #fabd2f; /* yellow2 */
+    color: var(--color-token-4);
   }
 
   .token.regex {
-    background: #b8bb26; /* green2 */
+    background-color: var(--color-token-6);
   }
 
   .token.bold {
@@ -128,51 +114,41 @@ const prism = css.global`
   }
 
   .token.inserted {
-    background: #a89984; /* fg4 / gray1 */
+    background-color: var(--color-token-2);
   }
 
   .token.deleted {
-    background: #fb4934; /* red2 */
+    background-color: var(--color-token-3);
   }
 
-  /* plus */
-  pre {
-    width: 100%;
-    /* overflow-x: auto; */
-  }
+  /*
+    Line highlight
+  */
 
   .code-highlight {
-    float: left; /* 1 */
-    min-width: 100%; /* 2 */
+    min-width: 100%;
+    float: left;
   }
 
   .code-line {
     display: block;
-    padding-left: 16px;
     padding-right: 16px;
-    margin-left: -16px;
+    padding-left: 16px;
     margin-right: -16px;
-    border-left-width: 4px;
-    border-left-color: rgb(31, 41, 55); /* Set code block color */
+    margin-left: -16px;
   }
 
   .highlight-line {
-    margin-left: -16px;
     margin-right: -16px;
-    background-color: rgba(55, 65, 81, 0.5); /* Set highlight bg color */
-    border-left-width: 4px;
-    border-left-color: rgb(
-      59,
-      130,
-      246
-    ); /* Set highlight accent border color */
+    margin-left: -16px;
+    background-color: var(--color-code-line-highlight);
   }
 
   .line-number::before {
-    padding-right: 16px;
-    margin-left: -8px;
-    color: rgb(156, 163, 175); /* Line number color */
     content: attr(line);
+    margin-left: -8px;
+    padding-right: 16px;
+    color: var(--color-code-line-number);
   }
 `
 
