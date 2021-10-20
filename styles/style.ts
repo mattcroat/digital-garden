@@ -71,6 +71,9 @@ const styles = css.global`
     --color-toggle-moon: hsl(0, 0%, 98%);
     --color-toggle-mask: var(--color-toggle);
     --color-link: hsl(172, 100%, 50%);
+    --color-post: hsl(184, 40%, 10%);
+    --color-post-title: hsl(172, 100%, 50%);
+    --color-post-description: hsl(184, 40%, 90%);
     --color-table-border: hsl(172, 100%, 28%);
     --color-blockquote: hsl(172, 100%, 28%);
     --color-selection: hsl(172, 100%, 28%);
@@ -106,6 +109,9 @@ const styles = css.global`
     --color-toggle-moon: hsl(220, 20%, 10%);
     --color-toggle-mask: var(--color-toggle);
     --color-link: hsl(172, 100%, 24%);
+    --color-post: hsl(184, 40%, 90%);
+    --color-post-title: hsl(184, 100%, 24%);
+    --color-post-description: hsl(184, 40%, 20%);
     --color-table-border: hsl(172, 100%, 28%);
     --color-blockquote: hsl(172, 100%, 28%);
     --color-selection: hsl(172, 100%, 50%);
@@ -174,7 +180,7 @@ const styles = css.global`
   }
 
   .post h1 {
-    margin-top: var(--spacing-2);
+    margin: var(--spacing-2) 0;
     font-size: var(--font-primary);
   }
 

@@ -15,20 +15,48 @@ interface HomeProps {
 
 function Posts({ posts }: PostsProps) {
   return (
-    <ol>
-      {posts.map(({ title, slug }) => (
-        <li key={slug}>
-          <Link href={`/${slug}`}>{title}</Link>
-        </li>
+    <section>
+      {posts.map(({ title, description, slug }) => (
+        <article key={slug}>
+          <Link href={`/${slug}`}>
+            <a>{title}</a>
+          </Link>
+          <p>{description}</p>
+        </article>
       ))}
-    </ol>
+
+      <style jsx>
+        {`
+          section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-1);
+          }
+
+          article {
+            padding: var(--spacing-1);
+            background-color: var(--color-post);
+            border-radius: var(--radius-base);
+          }
+
+          a {
+            font-size: var(--font-tertiary);
+            color: var(--color-post-title);
+          }
+
+          p {
+            color: var(--color-post-description);
+          }
+        `}
+      </style>
+    </section>
   )
 }
 
 export default function Home({ posts }: HomeProps) {
   return (
     <Layout>
-      <h1>Digital Garden</h1>
+      <h1>Latest Posts</h1>
       <Posts posts={posts} />
     </Layout>
   )

@@ -3,9 +3,9 @@ import ThemeToggle from './ThemeToggle'
 
 const links = [
   { location: '🌱 Digital Garden', url: '/' },
-  { location: 'HTML', url: '/category/html' },
-  { location: 'CSS', url: '/category/css' },
-  { location: 'JavaScript', url: '/category/javascript' },
+  { location: '🏷️ HTML', url: '/category/html' },
+  { location: '😎 CSS', url: '/category/css' },
+  { location: '📜 JavaScript', url: '/category/javascript' },
 ]
 
 function Links() {
@@ -13,7 +13,9 @@ function Links() {
     <ol>
       {links.map(({ location, url }) => (
         <li key={location}>
-          <Link href={url}>{location}</Link>
+          <Link href={url}>
+            <a>{location}</a>
+          </Link>
         </li>
       ))}
 
