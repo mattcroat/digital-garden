@@ -1,7 +1,7 @@
 import css from 'styled-jsx/css'
 
 const styles = css.global`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
 
   *,
   *:after,
@@ -13,7 +13,7 @@ const styles = css.global`
 
   :root {
     --font-serif: 'Poppins', sans-serif;
-    --font-mono: Consolas, Monaco, 'Andale Mono', monospace;
+    --font-mono: 'Noto Sans Mono', monospace;
     --font-primary: 3rem;
     --font-secondary: 1.5rem;
     --font-tertiary: 1.25rem;
@@ -33,6 +33,7 @@ const styles = css.global`
 
   ::-webkit-scrollbar {
     width: 2px;
+    height: 2px;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -133,20 +134,32 @@ const styles = css.global`
 
   .post {
     display: grid;
-    grid-template-columns: 1fr 4rem 60ch 4rem 1fr;
-    gap: var(--spacing-2);
+    grid-template-columns: 2rem minmax(0, var(--reading-length)) 2rem;
+    justify-content: center;
+    row-gap: var(--spacing-2);
   }
 
   .post > * {
-    grid-column: 3/4;
+    grid-column: 2/3;
   }
 
-  .post .container {
-    grid-column: 2/5;
-  }
+  /* span image and code blocks outside regular layout */
+  @media (min-width: 640px) {
+    .post {
+      grid-template-columns: 4rem minmax(0, var(--reading-length)) 4rem;
+    }
 
-  .post pre {
-    grid-column: 2/5;
+    .post .container {
+      grid-column: 1/-1;
+    }
+
+    .post .rehype-code-title {
+      grid-column: 1/-1;
+    }
+
+    .post pre {
+      grid-column: 1/-1;
+    }
   }
 
   .post .rehype-code-title {
@@ -154,7 +167,6 @@ const styles = css.global`
     align-items: center;
     margin-bottom: -2rem;
     padding: 0.6rem 1rem;
-    grid-column: 2/5;
     color: var(--color-code-title);
     background-color: var(--color-code-block);
     border-bottom: 1px solid var(--color-code-border);
@@ -162,10 +174,12 @@ const styles = css.global`
   }
 
   .post h1 {
+    margin-top: var(--spacing-2);
     font-size: var(--font-primary);
   }
 
   .post h2 {
+    margin-top: var(--spacing-1);
     font-size: var(--font-secondary);
   }
 

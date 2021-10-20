@@ -21,8 +21,17 @@ function Links() {
         {`
           ol {
             display: flex;
+            flex-direction: column;
             gap: var(--spacing-1);
             list-style: none;
+          }
+
+          @media (min-width: 640px) {
+            ol {
+              display: flex;
+              flex-direction: row;
+              gap: var(--spacing-1);
+            }
           }
         `}
       </style>
@@ -39,18 +48,21 @@ export function Navigation() {
       <style jsx>
         {`
           nav {
-            max-width: var(--reading-length);
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: var(--spacing-2) 0;
+            flex-direction: column;
+            gap: var(--spacing-1);
+            padding: var(--spacing-2);
           }
 
-          ol {
-            display: flex;
-            gap: var(--spacing-1);
-            list-style: none;
+          @media (min-width: 640px) {
+            nav {
+              max-width: var(--reading-length);
+              margin: 0 auto;
+              padding: var(--spacing-2) 0;
+              flex-direction: row;
+              justify-content: space-between;
+              align-items: center;
+            }
           }
         `}
       </style>

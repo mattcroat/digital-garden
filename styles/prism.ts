@@ -11,6 +11,7 @@ const prism = css.global`
     border-radius: 0 0 4px 4px;
     background-color: var(--color-code-block);
     box-shadow: 0px 4px 2px hsl(0, 0%, 0%, 10%);
+    overflow-x: scroll;
   }
 
   code[class*='language-'],
@@ -126,7 +127,7 @@ const prism = css.global`
   */
 
   .code-highlight {
-    min-width: 100%;
+    width: 100%;
     float: left;
   }
 

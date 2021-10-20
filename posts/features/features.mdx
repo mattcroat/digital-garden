@@ -1,0 +1,147 @@
+---
+title: Features
+description: Showing features Digital Garden Features
+published: '2021-10-20'
+category: 'html'
+slug: 'features'
+image: '/images/features/og-image.png'
+---
+
+import { Counter } from './Counter'
+
+# Features
+
+## Table of Contents
+
+## React Component
+
+<Counter />
+
+## Paragraph
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, tempore, minima nisi suscipit hic odit consequatur iusto, dolor eum fuga mollitia facere? Nam quaerat dolorem culpa, est aliquid veritatis amet.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, tempore, minima nisi suscipit hic odit consequatur iusto, dolor eum fuga mollitia facere? Nam quaerat dolorem culpa, est aliquid veritatis amet.
+
+## Image
+
+![Stairs](/images/features/stairs.webp)
+
+## Blockquote
+
+> "Block quote"
+
+## List
+
+- Unordered
+- List
+
+1. Ordered
+2. List
+
+## Code
+
+```html:index.html {2,3} showLineNumbers
+<div class="element">
+  <h1>Title</h1>
+  <p>Lorem ipsum.</p>
+</div>
+```
+
+```css:style.css showLineNumbers
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font-serif: 'Poppins', sans-serif;
+  --font-mono: 'Noto Sans Mono', monospace;
+  --font-primary: 3rem;
+  --font-secondary: 1.5rem;
+  --font-tertiary: 1.25rem;
+  --font-text: 1.125rem;
+  --line-height-text: 1.8;
+  --reading-length: 60ch;
+  --spacing-1: 1rem;
+  --spacing-2: 2rem;
+  --radius-base: 10px;
+  --shadow: 2px 2px 4px hsl(0, 0%, 0%, 20%);
+  --transition-color: color 0.3s, background-color 0.3s;
+}
+
+::selection {
+  background-color: var(--color-selection);
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar);
+}
+
+html,
+body {
+  height: 100%;
+  /* firefox */
+  scrollbar-color: var(--color-scrollbar);
+  scrollbar-width: thin;
+}
+
+body {
+  font-family: var(--font-serif);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-background-gradient),
+    transparent
+  );
+  background-attachment: fixed;
+  transition: var(--transition-color);
+}
+```
+
+```js:index.js {2} showLineNumbers
+function greeting() {
+  console.log('Hello, World!')
+}
+```
+
+## Smartypants
+
+Real "quotes" and ... ellipses.
+
+## GitHub Flavored Markdown
+
+### Links
+
+A [link](https://example.com), some _emphasis_,
+something **strong**, and finally a little `code()`.
+
+### Automatic Linking
+
+www.example.com, https://example.com and contact@example.com.
+
+### Strikethrough
+
+~one~ or ~~two~~ tildes.
+
+### Table
+
+| Left | Center | Right |
+| :--- | :----: | ----: |
+| Left | Center | Right |
+| Left | Center | Right |
+
+### Tasklist
+
+- [ ] to do
+- [x] done
