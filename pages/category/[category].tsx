@@ -3,7 +3,7 @@ import { bundleMDXFile } from 'mdx-bundler'
 import { cwd } from 'process'
 import { readdirSync } from 'fs'
 
-import Blog from '../../components/layout/Blog'
+import Blog from '@/root/components/layout/Blog'
 
 interface Post {
   category: string

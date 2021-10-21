@@ -1,7 +1,7 @@
-import { Navigation } from '../Navigation'
-import Seo from '../Seo'
-import styles from '../../styles/style'
-import prism from '../../styles/prism'
+import { Navigation } from '@/root/components/Navigation'
+import Seo from '@/root/components/Seo'
+import styles from '@/root/styles/style'
+import prism from '@/root/styles/prism'
 
 interface ContainerProps {
   children: React.ReactNode
