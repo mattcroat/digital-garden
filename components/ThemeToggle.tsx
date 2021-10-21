@@ -77,20 +77,11 @@ function Toggle({ checked, toggle }: ToggleProps) {
   )
 }
 
-export default function DarkModeToggle() {
-  const [theme, setTheme] = useState<string>('dark')
+export default function ThemeToggle() {
+  const selectedTheme = document.body.dataset.theme ?? 'dark'
+  const [theme, setTheme] = useState<string>(selectedTheme)
   const checked = theme === 'dark' ? true : false
   const flipTheme = theme === 'dark' ? 'light' : 'dark'
-
-  useEffect(() => {
-    // if theme is selected use it
-    const selectedTheme = localStorage.getItem('theme')
-    // otherwise see if the user has a set preference
-    const prefers = matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light'
-    selectedTheme ? setTheme(selectedTheme) : setTheme(prefers)
-  }, [])
 
   useEffect(() => {
     document.body.dataset.theme = theme

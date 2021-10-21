@@ -1,5 +1,8 @@
 import Link from 'next/link'
-import ThemeToggle from './ThemeToggle'
+import dynamic from 'next/dynamic'
+
+// we don't want to run the code on the server
+const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false })
 
 const links = [
   { location: '🌱 Digital Garden', url: '/' },
