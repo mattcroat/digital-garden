@@ -14,10 +14,10 @@ import remarkSmartypants from '@silvenon/remark-smartypants'
 import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-import { Post as Metadata } from '../types/post'
-import Blog from '../components/layout/Blog'
-import mdxComponents from '../components/mdx'
-import rehypeImageSize from '../lib/rehypeImageSize'
+import { Post as Metadata } from '@/root/types/post'
+import Blog from '@/root/components/layout/Blog'
+import mdxComponents from '@/root/components/mdx'
+import rehypeImageSize from '@/root/lib/rehypeImageSize'
 
 interface PostProps {
   code: string

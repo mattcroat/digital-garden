@@ -2,10 +2,11 @@ import { Navigation } from '@/root/components/Navigation'
 import Seo from '@/root/components/Seo'
 import styles from '@/root/styles/style'
 import prism from '@/root/styles/prism'
+import { Post } from '@/root/types/post'
 
 interface BlogProps {
   children: React.ReactNode
-  metadata?: any
+  metadata?: Post
 }
 
 export default function Blog({ children, metadata }: BlogProps) {

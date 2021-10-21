@@ -212,7 +212,7 @@ const styles = css.global`
       grid-column: 1/-1;
     }
 
-    .post pre {
+    .post .code-block {
       grid-column: 1/-1;
     }
   }
