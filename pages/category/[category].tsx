@@ -1,9 +1,9 @@
-import Link from 'next/link'
 import { bundleMDXFile } from 'mdx-bundler'
 import { cwd } from 'process'
 import { readdirSync } from 'fs'
 
-import Blog from '@/root/components/layout/Blog'
+import Container from '@/root/components/layout/Container'
+import Posts from '@/root/components/Posts'
 
 interface Post {
   category: string
@@ -17,10 +17,6 @@ interface Post {
 interface CategoryProps {
   posts: Post[]
   category: typeof categories[number]
-}
-
-interface PostsProps {
-  posts: Post[]
 }
 
 interface Context {
@@ -37,24 +33,12 @@ const categoryName = {
   javascript: 'JavaScript',
 }
 
-function Posts({ posts }: PostsProps) {
-  return (
-    <ol>
-      {posts.map(({ title, slug }) => (
-        <li key={slug}>
-          <Link href={`/${slug}`}>{title}</Link>
-        </li>
-      ))}
-    </ol>
-  )
-}
-
 export default function Category({ posts, category }: CategoryProps) {
   return (
-    <Blog>
-      <h1>{categoryName[category]}</h1>
+    <Container>
+      <h2>{categoryName[category]}</h2>
       <Posts posts={posts} />
-    </Blog>
+    </Container>
   )
 }
 
