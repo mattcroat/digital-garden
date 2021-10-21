@@ -13,7 +13,6 @@ Features:
 - [x] List sorted posts
 - [x] Next.js image
 - [x] Meta tags (SEO)
-- [ ] Analytics (Netlify)
 - [x] MDX
 - [x] Markdown plugins
   - [x] GitHub flavored Markdown
@@ -26,7 +25,7 @@ Features:
   - [x] Syntax highlight using Prism
     - [x] Line highlight
     - [x] Line numbers
-    - [ ] Copy to clipboard
+    - [x] Copy to clipboard
   - [x] Generate table of contents
     - [x] Headings have links
     - [x] Headings have IDs
