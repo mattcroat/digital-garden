@@ -1,14 +1,14 @@
-import { Navigation } from './Navigation'
-import Seo from './Seo'
-import styles from '../styles/style'
-import prism from '../styles/prism'
+import { Navigation } from '../Navigation'
+import Seo from '../Seo'
+import styles from '../../styles/style'
+import prism from '../../styles/prism'
 
-interface LayoutProps {
+interface BlogProps {
   children: React.ReactNode
   metadata?: any
 }
 
-export default function Layout({ children, metadata }: LayoutProps) {
+export default function Blog({ children, metadata }: BlogProps) {
   return (
     <div>
       <Seo {...metadata} />

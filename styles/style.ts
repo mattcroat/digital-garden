@@ -3,6 +3,10 @@ import css from 'styled-jsx/css'
 const styles = css.global`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@400;700&family=Poppins:wght@400;700;900&display=swap');
 
+  /*
+    CSS Reset
+  */
+
   *,
   *:after,
   *:before {
@@ -10,6 +14,10 @@ const styles = css.global`
     padding: 0;
     box-sizing: border-box;
   }
+
+  /*
+    CSS Variables
+  */
 
   :root {
     --font-serif: 'Poppins', sans-serif;
@@ -26,6 +34,10 @@ const styles = css.global`
     --shadow: 2px 2px 4px hsl(0, 0%, 0%, 20%);
     --transition-color: color 0.3s, background-color 0.3s;
   }
+
+  /*
+    General
+  */
 
   ::selection {
     background-color: var(--color-selection);
@@ -60,6 +72,39 @@ const styles = css.global`
     background-attachment: fixed;
     transition: var(--transition-color);
   }
+
+  h2 {
+    margin: var(--spacing-1) 0;
+    font-size: var(--font-secondary);
+  }
+
+  a {
+    color: var(--color-link);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid var(--color-table-border);
+  }
+
+  th,
+  td {
+    padding: var(--spacing-1);
+  }
+
+  /*
+    Themes
+  */
 
   body[data-theme='dark'] {
     /* site colors */
@@ -137,6 +182,10 @@ const styles = css.global`
     --color-token-5: hsl(344, 47%, 68%);
     --color-token-6: hsl(172, 100%, 90%);
   }
+
+  /*
+    Prose
+  */
 
   .post {
     display: grid;
@@ -228,6 +277,10 @@ const styles = css.global`
     border-left: 2px solid var(--color-blockquote);
   }
 
+  /*
+    Utility
+  */
+
   .sr-only {
     position: absolute;
     width: 1px;
@@ -238,30 +291,6 @@ const styles = css.global`
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
-  }
-
-  a {
-    color: var(--color-link);
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  table {
-    border-collapse: collapse;
-  }
-
-  table,
-  th,
-  td {
-    border: 1px solid var(--color-table-border);
-  }
-
-  th,
-  td {
-    padding: var(--spacing-1);
   }
 `
 

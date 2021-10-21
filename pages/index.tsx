@@ -3,7 +3,7 @@ import Link from 'next/link'
 import fs from 'fs'
 
 import { Post } from '../types/post'
-import Layout from '../components/Layout'
+import Container from '../components/layout/Container'
 
 interface PostsProps {
   posts: Post[]
@@ -55,10 +55,10 @@ function Posts({ posts }: PostsProps) {
 
 export default function Home({ posts }: HomeProps) {
   return (
-    <Layout>
-      <h1>Latest Posts</h1>
+    <Container>
+      <h2>Latest Posts</h2>
       <Posts posts={posts} />
-    </Layout>
+    </Container>
   )
 }
 

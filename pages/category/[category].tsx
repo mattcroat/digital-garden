@@ -3,7 +3,7 @@ import { bundleMDXFile } from 'mdx-bundler'
 import { cwd } from 'process'
 import { readdirSync } from 'fs'
 
-import Layout from '../../components/Layout'
+import Blog from '../../components/layout/Blog'
 
 interface Post {
   category: string
@@ -51,10 +51,10 @@ function Posts({ posts }: PostsProps) {
 
 export default function Category({ posts, category }: CategoryProps) {
   return (
-    <Layout>
+    <Blog>
       <h1>{categoryName[category]}</h1>
       <Posts posts={posts} />
-    </Layout>
+    </Blog>
   )
 }
 

@@ -15,7 +15,7 @@ import remarkTableofContents from 'remark-toc'
 import remarkUnwrapImages from 'remark-unwrap-images'
 
 import { Post as Metadata } from '../types/post'
-import Layout from '../components/Layout'
+import Blog from '../components/layout/Blog'
 import mdxComponents from '../components/mdx'
 import rehypeImageSize from '../lib/rehypeImageSize'
 
@@ -35,9 +35,9 @@ export default function Post({ code, metadata }: PostProps) {
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
-    <Layout metadata={metadata}>
+    <Blog metadata={metadata}>
       <Component components={mdxComponents as any} />
-    </Layout>
+    </Blog>
   )
 }
 
