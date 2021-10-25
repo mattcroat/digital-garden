@@ -2,7 +2,9 @@ import Head from 'next/head'
 
 export default function Seo({ ...metadata }) {
   const development = process.env.NODE_ENV === 'development'
-  const url = development ? 'http://localhost:3000' : 'your-site-url'
+  const url = development
+    ? 'http://localhost:3000'
+    : 'https://thedigitalgarden.vercel.app/'
 
   const meta = {
     title: 'Digital Garden',

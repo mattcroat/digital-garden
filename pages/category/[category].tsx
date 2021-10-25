@@ -2,17 +2,9 @@ import { bundleMDXFile } from 'mdx-bundler'
 import { cwd } from 'process'
 import { readdirSync } from 'fs'
 
+import { Post } from '@/root/types/post'
 import Container from '@/root/components/layout/Container'
 import Posts from '@/root/components/Posts'
-
-interface Post {
-  category: string
-  description: string
-  image: string
-  published: number
-  slug: string
-  title: string
-}
 
 interface CategoryProps {
   posts: Post[]
@@ -40,6 +32,18 @@ export default function Category({ posts, category }: CategoryProps) {
       <Posts posts={posts} />
     </Container>
   )
+}
+
+export async function getStaticPaths() {
+  // paths
+  const paths = categories.map((category) => ({
+    params: { category },
+  }))
+
+  return {
+    paths,
+    fallback: false,
+  }
 }
 
 export async function getStaticProps(context: Context) {
@@ -75,17 +79,5 @@ export async function getStaticProps(context: Context) {
       posts: sortedPosts,
       category,
     },
-  }
-}
-
-export async function getStaticPaths() {
-  // paths
-  const paths = categories.map((category) => ({
-    params: { category },
-  }))
-
-  return {
-    paths,
-    fallback: false,
   }
 }
