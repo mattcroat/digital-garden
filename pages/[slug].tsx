@@ -6,6 +6,7 @@ import fs from 'fs'
 
 // mdx plugins
 import rehypeCodeTitles from 'rehype-code-titles'
+import rehypeImagePlaceholder from 'rehype-image-placeholder'
 import rehypePrism from 'rehype-prism-plus'
 import remarkGfm from 'remark-gfm'
 import remarkHeadings from 'remark-autolink-headings'
@@ -17,7 +18,6 @@ import remarkUnwrapImages from 'remark-unwrap-images'
 import { Post as Metadata } from '@/root/types/post'
 import Blog from '@/root/components/layout/Blog'
 import mdxComponents from '@/root/components/mdx'
-import rehypeImageSize from '@/root/lib/rehypeImageSize'
 
 interface PostProps {
   code: string
@@ -88,7 +88,7 @@ export async function getStaticProps({ params }: Params) {
         // syntax highlight
         rehypePrism,
         // image dimensions and placeholder
-        [rehypeImageSize, { dir: 'public' }],
+        [rehypeImagePlaceholder, { dir: 'public' }],
       ]
       return options
     },
