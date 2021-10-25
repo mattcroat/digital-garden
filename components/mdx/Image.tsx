@@ -29,7 +29,7 @@ export default function Image({
           width={width}
           height={height}
           loading="lazy"
-          placeholder="blur"
+          placeholder={blurDataURL ? 'blur' : undefined}
           blurDataURL={blurDataURL}
         />
       </div>
